@@ -1,5 +1,5 @@
 #include <WiFi.h>
-#include "artnet.h"
+#include <Artnet.h>
 
 char *SSID = "Silva-WIFI";
 char *PASSWORD = "silvaFTW";
