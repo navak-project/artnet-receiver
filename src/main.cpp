@@ -12,9 +12,11 @@ const char *ssid = "Silva-WIFI";
 const char *password = "silvaFTW";
 
 // LED settings
-const int numLeds = 800;                  // CHANGE FOR YOUR SETUP
+const int numLeds = 300;                  // CHANGE FOR YOUR SETUP
 const int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
 const byte dataPin = 18;
+const byte dataPin2 = 19;
+const byte dataPin3 = 27;
 CRGB leds[numLeds];
 
 // Art-Net settings
@@ -97,11 +99,6 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t *d
 {
   sendFrame = 1;
   // set brightness of the whole strip
-  if (universe == 15)
-  {
-    FastLED.setBrightness(data[0]);
-    FastLED.show();
-  }
 
   // range check
   if (universe < startUniverse)
@@ -150,6 +147,8 @@ void setup()
   ConnectWifi();
   artnet.begin();
   FastLED.addLeds<WS2812, dataPin, GRB>(leds, numLeds);
+  FastLED.addLeds<WS2812, dataPin2, GRB>(leds, numLeds);
+  FastLED.addLeds<WS2812, dataPin3, GRB>(leds, numLeds);
   initTest();
 
   memset(universesReceived, 0, maxUniverses);
