@@ -21,7 +21,7 @@ CRGB leds[numLeds];
 
 // Art-Net settings
 ArtnetWifi artnet;
-const int startUniverse = 250; // CHANGE FOR YOUR SETUP most software this is 1, some software send out artnet first universe as 0.
+const int startUniverse = 255; // CHANGE FOR YOUR SETUP most software this is 1, some software send out artnet first universe as 0.
 
 // Check if we got all universes
 const int maxUniverses = numberOfChannels / 512 + ((numberOfChannels % 512) ? 1 : 0);

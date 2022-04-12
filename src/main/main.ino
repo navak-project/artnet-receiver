@@ -12,15 +12,16 @@ const char *ssid = "Silva-WIFI";
 const char *password = "silvaFTW";
 
 // LED settings
-const int numLeds = 800;                  // CHANGE FOR YOUR SETUP
+const int numLeds = 300;                  // CHANGE FOR YOUR SETUP
 const int numberOfChannels = numLeds * 3; // Total number of channels you want to receive (1 led = 3 channels)
 const byte dataPin = 18;
 const byte dataPin2 = 19;
+const byte dataPin3 = 27;
 CRGB leds[numLeds];
 
 // Art-Net settings
 ArtnetWifi artnet;
-const int startUniverse = 211; // CHANGE FOR YOUR SETUP most software this is 1, some software send out artnet first universe as 0.
+const int startUniverse = 250; // CHANGE FOR YOUR SETUP most software this is 1, some software send out artnet first universe as 0.
 
 // Check if we got all universes
 const int maxUniverses = numberOfChannels / 512 + ((numberOfChannels % 512) ? 1 : 0);
@@ -147,6 +148,7 @@ void setup()
   artnet.begin();
   FastLED.addLeds<WS2812, dataPin, GRB>(leds, numLeds);
   FastLED.addLeds<WS2812, dataPin2, GRB>(leds, numLeds);
+  FastLED.addLeds<WS2812, dataPin3, GRB>(leds, numLeds);
   initTest();
 
   memset(universesReceived, 0, maxUniverses);
